@@ -1,9 +1,7 @@
-FROM continuumio/miniconda:4.5.4
+FROM continuumio/miniconda:latest
 
-RUN pip install mlflow>=1.0 \
-    && pip install azure-storage-blob==12.3.0 \
-    && pip install numpy==1.14.3 \
+RUN pip install mlflow \
+    && pip install numpy\
     && pip install scipy \
-    && pip install pandas==0.22.0 \
-    && pip install scikit-learn==0.19.1 \
-    && pip install cloudpickle
+    && pip install pandas \
+    && pip install scikit-learn\
