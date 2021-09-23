@@ -17,5 +17,6 @@ jobs:
           pip install -r requirements.txt
           # docker build -t mlflow-docker-example -f Dockerfile .
           mlflow run . --no-conda
+          git fetch --prune
           #pip install -r requirements.txt
           #python test.py
