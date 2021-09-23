@@ -11,6 +11,7 @@ jobs:
           repo_token: ${{ secrets.REPO_TOKEN }}
         run: |
           # Your ML workflow goes here
+          sudo apt install python3.7
           pip install mlflow
           pip uninstall uuid
           docker build -t mlflow-docker-example -f Dockerfile .
