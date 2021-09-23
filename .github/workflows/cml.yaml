@@ -13,9 +13,9 @@ jobs:
           # Your ML workflow goes here
           # sudo apt-get update && sudo apt-get upgrade
           # sudo apt-get install python3.7
-          pip install mlflow
-          pip uninstall uuid
-          docker build -t mlflow-docker-example -f Dockerfile .
-          mlflow run . -P alpha=0.5
+          # pip install mlflow
+          # pip install -r requirements.txt
+          # docker build -t mlflow-docker-example -f Dockerfile .
+          mlflow run .
           #pip install -r requirements.txt
           #python test.py
