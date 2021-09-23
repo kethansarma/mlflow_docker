@@ -13,6 +13,6 @@ jobs:
           # Your ML workflow goes here
           pip install mlflow
           docker build -t mlflow-docker-example -f Dockerfile .
-          mlflow run mlfow_docker
+          mlflow run .
           #pip install -r requirements.txt
           #python test.py
