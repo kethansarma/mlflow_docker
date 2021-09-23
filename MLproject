@@ -2,7 +2,7 @@ name: mlflow_docker
 
 #docker_env:
 #  image:  mlflow-docker-example
-conda_env: conda.yaml
+#conda_env: conda.yaml
 
 entry_points:
   main:
