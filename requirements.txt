@@ -1,5 +1,1 @@
 mlflow
-numpy
-scipy
-pandas
-scikit-learn
