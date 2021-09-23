@@ -1,6 +1,6 @@
 FROM continuumio/miniconda:latest
 
-RUN apt-get --allow-releaseinfo-change update && apt-get install -y python3.7 \
+RUN conda install python=3.6 \
     && pip install mlflow \
     && pip install numpy\
     && pip install scipy \
