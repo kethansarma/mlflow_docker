@@ -12,6 +12,7 @@ jobs:
         run: |
           # Your ML workflow goes here
           pip install mlflow
+          pip uninstall uuid
           docker build -t mlflow-docker-example -f Dockerfile .
           mlflow run . -P alpha=0.5
           #pip install -r requirements.txt

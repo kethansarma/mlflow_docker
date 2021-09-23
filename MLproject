@@ -1,4 +1,4 @@
-name: docker-example
+name: mlflow_docker
 
 docker_env:
   image:  mlflow-docker-example
