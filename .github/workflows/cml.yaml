@@ -17,6 +17,8 @@ jobs:
           pip install -r requirements.txt
           # docker build -t mlflow-docker-example -f Dockerfile .
           mlflow run . --no-conda
+
+          git config --global user.email "kethansarma@gmail.com"
           git add . && git commit -m "Mlflow" && git push
           #pip install -r requirements.txt
           #python test.py
