@@ -11,13 +11,10 @@ jobs:
           repo_token: ${{ secrets.REPO_TOKEN }}
         run: |
           # Your ML workflow goes here
-          # sudo apt-get update && sudo apt-get upgrade
-          # sudo apt-get install python3.7
-          # pip install mlflow
           pip install -r requirements.txt
           # docker build -t mlflow-docker-example -f Dockerfile .
           mlflow run . --no-conda
-
+          mlflow ui
           git config --global user.email "kethansarma@gmail.com"
           git add . && git commit -m "Mlflow" && git push
           #pip install -r requirements.txt
