@@ -9,11 +9,13 @@ jobs:
       - name: sanity-check
         env:
           repo_token: ${{ secrets.REPO_TOKEN }}
+          exp_name: Mona
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
           # docker build -t mlflow-docker-example -f Dockerfile .
-          mlflow run . --no-conda
+          # mlflow experiments create -n exp1 -l file:./mlruns/1
+          mlflow run . --no-conda --experiment-name $exp_name
           #mlflow ui
           git config --global user.email "kethansarma@gmail.com"
           git add . && git commit -m "Mlflow" && git push
