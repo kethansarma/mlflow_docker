@@ -69,4 +69,4 @@ if __name__ == "__main__":
         mlflow.log_metric("rmse", rmse)
         mlflow.log_metric("r2", r2)
         mlflow.log_metric("mae", mae)
-        mlflow.sklearn.log_model(lr, "model")
+        mlflow.sklearn.log_model(lr, artifact_path="model")
