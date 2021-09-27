@@ -1,0 +1,4 @@
+artifact_location: file:///__w/mlflow_docker/mlflow_docker/mlruns/3
+experiment_id: '3'
+lifecycle_stage: active
+name: Model-Selection
