@@ -22,10 +22,9 @@ jobs:
           #git add . && git commit -m "Mlflow experiment added" && git push
           #pip install -r requirements.txt
           #python test.py
-  report:
-    runs-on: ubuntu-latest
-    steps:
       - name: Commit report
+        env:
+          repo_token: ${{ secrets.REPO_TOKEN }}
         run: |
           git config --global user.email "kethansarma@gmail.com"
           git add . && git commit -m "Mlflow experiment added"
