@@ -6,7 +6,7 @@ jobs:
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
-      - name: sanity-check
+      - name: Perform-Training
         env:
           exp_name: Mona
           run_names: "M1-M2"
@@ -15,11 +15,7 @@ jobs:
           pip install -r requirements.txt
           python setup_experiment.py $exp_name
           # docker build -t mlflow-docker-example -f Dockerfile .
-          # mlflow experiments create -n exp1 -l file:./mlruns/len()
           mlflow run . --no-conda --experiment-name $exp_name
-          #mlflow ui
-          #git config --global user.email "kethansarma@gmail.com"
-          #git add . && git commit -m "Mlflow experiment added" && git push
       - name: Commit report
         env:
           repo_token: ${{ secrets.REPO_TOKEN }}
