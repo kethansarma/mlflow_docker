@@ -10,11 +10,13 @@ jobs:
         env:
           repo_token: ${{ secrets.REPO_TOKEN }}
           exp_name: Mona
+          run_names: "M1-M2"
         run: |
           # Your ML workflow goes here
           pip install -r requirements.txt
+          python setup_experiment $exp_name
           # docker build -t mlflow-docker-example -f Dockerfile .
-          # mlflow experiments create -n exp1 -l file:./mlruns/1
+          # mlflow experiments create -n exp1 -l file:./mlruns/len()
           mlflow run . --no-conda --experiment-name $exp_name
           #mlflow ui
           git config --global user.email "kethansarma@gmail.com"

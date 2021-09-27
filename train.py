@@ -53,42 +53,26 @@ if __name__ == "__main__":
     client = MlflowClient()
     exp_id = _get_experiment_id()
     experiment = client.get_experiment(exp_id)
-    artifact_location = experiment.artifact_location
     exp_name = experiment.name
-    if not artifact_location.startswith("./mlruns/"):
-        path = f"./mlruns/{exp_id}/meta.yaml"
-        with open(path) as file:
-            documents = yaml.full_load(file)
-        documents['artifact_location'] = f"file:./mlruns/{exp_id}"
-        with open(path, 'w') as yamlfile:
-            data = yaml.dump(documents, yamlfile)
-    else:
-        pass
-    with mlflow.start_run() as run:
-        run_id = run.run_id = run.info.run_uuid
-        lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
-        lr.fit(train_x, train_y)
-        predicted_qualities = lr.predict(test_x)
-        (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
-        print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
-        print("  RMSE: %s" % rmse)
-        print("  MAE: %s" % mae)
-        print("  R2: %s" % r2)
+    # os.environ['run_name_list'] = "m1-m2"
+    run_names = os.environ.get('run_names').split("-")
+    for run_name in run_names:
+        with mlflow.start_run(experiment_id= exp_id) as run:
+            mlflow.set_tag('mlflow.runName', run_name)
+            run_id = run.run_id = run.info.run_uuid
+            lr = ElasticNet(alpha=alpha, l1_ratio=l1_ratio, random_state=42)
+            lr.fit(train_x, train_y)
+            predicted_qualities = lr.predict(test_x)
+            (rmse, mae, r2) = eval_metrics(test_y, predicted_qualities)
+            print("Elasticnet model (alpha=%f, l1_ratio=%f):" % (alpha, l1_ratio))
+            print("  RMSE: %s" % rmse)
+            print("  MAE: %s" % mae)
+            print("  R2: %s" % r2)
 
-        mlflow.log_param("alpha", alpha)
-        mlflow.log_param("l1_ratio", l1_ratio)
-        mlflow.log_metric("rmse", rmse)
-        mlflow.log_metric("r2", r2)
-        mlflow.log_metric("mae", mae)
-        mlflow.sklearn.log_model(lr, artifact_path='models')
+            mlflow.log_param("alpha", alpha)
+            mlflow.log_param("l1_ratio", l1_ratio)
+            mlflow.log_metric("rmse", rmse)
+            mlflow.log_metric("r2", r2)
+            mlflow.log_metric("mae", mae)
+            mlflow.sklearn.log_model(lr, artifact_path='models')
 
-    path_run = f"./mlruns/{exp_id}/{run_id}/meta.yaml"
-    with open(path_run) as file:
-        documents = yaml.full_load(file)
-    artifact_uri = documents['artifact_uri']
-    if not artifact_uri.startswith("./mlruns/"):
-        documents['artifact_uri'] = f"./mlruns/{exp_id}/{run_id}/artifacts"
-        with open(path_run, 'w') as yamlfile:
-            data = yaml.dump(documents, yamlfile)
-    else:
-        pass
