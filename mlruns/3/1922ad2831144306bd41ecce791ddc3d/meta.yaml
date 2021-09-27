@@ -1,0 +1,15 @@
+artifact_uri: file:///__w/mlflow_docker/mlflow_docker/mlruns/3/1922ad2831144306bd41ecce791ddc3d/artifacts
+end_time: 1632765539006
+entry_point_name: ''
+experiment_id: '3'
+lifecycle_stage: active
+name: ''
+run_id: 1922ad2831144306bd41ecce791ddc3d
+run_uuid: 1922ad2831144306bd41ecce791ddc3d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1632765537995
+status: 3
+tags: []
+user_id: root
