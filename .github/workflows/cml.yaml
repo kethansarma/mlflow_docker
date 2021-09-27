@@ -14,7 +14,6 @@ jobs:
         env:
           exp_name: Model-Selection
           run_names: "M1-M2"
-          repo_token: ${{ secrets.REPO_TOKEN }}
         run: |
           # Your ML workflow goes here
           # docker build -t mlflow-docker-example -f Dockerfile .
