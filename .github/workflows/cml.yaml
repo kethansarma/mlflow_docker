@@ -20,8 +20,6 @@ jobs:
           #mlflow ui
           #git config --global user.email "kethansarma@gmail.com"
           #git add . && git commit -m "Mlflow experiment added" && git push
-          #pip install -r requirements.txt
-          #python test.py
       - name: Commit report
         env:
           repo_token: ${{ secrets.REPO_TOKEN }}
