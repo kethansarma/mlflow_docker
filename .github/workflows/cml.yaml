@@ -6,19 +6,20 @@ jobs:
     container: docker://dvcorg/cml-py3:latest
     steps:
       - uses: actions/checkout@v2
+      env:
+        exp_name: Model-Selection
+        run_names: "M1-M2"
+        repo_token: ${{ secrets.REPO_TOKEN }}
+      - name: Install-Requirements
+        run: pip install -r requirements.txt
+      - name: Setup-Experiment
+        run: python setup_experiment.py $exp_name
       - name: Perform-Training
-        env:
-          exp_name: Model-Selection
-          run_names: "M1-M2"
         run: |
           # Your ML workflow goes here
-          pip install -r requirements.txt
-          python setup_experiment.py $exp_name
           # docker build -t mlflow-docker-example -f Dockerfile .
           mlflow run . --no-conda --experiment-name $exp_name
       - name: Commit report
-        env:
-          repo_token: ${{ secrets.REPO_TOKEN }}
         run: |
           git config --global user.email "kethansarma@gmail.com"
           git add . && git commit -m "Mlflow experiment added"
