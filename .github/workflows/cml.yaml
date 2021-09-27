@@ -8,7 +8,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: sanity-check
         env:
-          repo_token: ${{ secrets.REPO_TOKEN }}
           exp_name: Mona
           run_names: "M1-M2"
         run: |
@@ -19,7 +18,15 @@ jobs:
           # mlflow experiments create -n exp1 -l file:./mlruns/len()
           mlflow run . --no-conda --experiment-name $exp_name
           #mlflow ui
-          git config --global user.email "kethansarma@gmail.com"
-          git add . && git commit -m "Mlflow" && git push
+          #git config --global user.email "kethansarma@gmail.com"
+          #git add . && git commit -m "Mlflow experiment added" && git push
           #pip install -r requirements.txt
           #python test.py
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Commit report
+        run: |
+          git config --global user.email "kethansarma@gmail.com"
+          git add . && git commit -m "Mlflow experiment added"
+          git push
